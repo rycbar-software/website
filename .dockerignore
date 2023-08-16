@@ -1,0 +1,12 @@
+.git
+.gitignore
+.editorconfig
+.dockerignore
+.idea
+.backups
+.certbot
+.env
+www
+cgi-bin
+log
+.docker/certbot/*

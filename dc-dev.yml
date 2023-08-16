@@ -1,0 +1,77 @@
+version: '3'
+services:
+  nginx:
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - assets-compiler
+
+  php:
+    restart: unless-stopped
+
+  mail:
+    restart: unless-stopped
+    environment:
+      SMARTHOST_ADDRESS: ${MAIL_SMTP_HOST}
+      SMARTHOST_PORT: ${MAIL_SMTP_PORT}
+      SMARTHOST_USER: ${MAIL_SMTP_USER}
+      SMARTHOST_PASSWORD: ${MAIL_SMTP_PASSWORD}
+
+  redis:
+    restart: unless-stopped
+
+  laravel-schedule:
+    restart: unless-stopped
+
+  laravel-queue:
+    restart: unless-stopped
+
+  # Open database ports for PhpStorm inspect
+  db:
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+
+  # NodeJs container to background frontend compilation
+  assets-compiler:
+    image: node:19-alpine
+    container_name: rycbar-assets-compiler
+    restart: "no"
+    tty: true
+    working_dir: /var/webserver/www
+    command: "npm run host"
+    volumes:
+      - ./www:/var/webserver/www
+    networks:
+      - frontend
+    ports:
+      - "5173:5173"
+
+  # NodeJs container to build frontend
+  npm:
+    profiles: ["npm"]
+    image: node:alpine
+    container_name: rycbar-npm
+    volumes:
+      - ./www:/var/webserver/www
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    working_dir: /var/webserver/www
+    entrypoint: [ 'npm' ]
+    networks:
+      - frontend
+
+  # Email client to inspect mailing features
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: rycbar-mailhog
+    restart: unless-stopped
+    logging:
+      driver: 'none'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - backend

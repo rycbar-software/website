@@ -1,0 +1,147 @@
+version: '3'
+services:
+  nginx:
+    container_name: rycbar-nginx
+    build:
+      context: ./.docker
+      dockerfile: nginx.Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+        - USER=${USER:-laravel}
+    restart: always
+    volumes:
+      - ./www:/var/webserver/www
+      - ./log:/var/webserver/log
+    depends_on:
+      - php
+      - redis
+    networks:
+      frontend:
+      backend:
+        aliases:
+          - ${APP_NAME}
+
+  php:
+    container_name: rycbar-php
+    build:
+      context: ./.docker
+      dockerfile: php.Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+        - USER=${USER:-laravel}
+    restart: always
+    expose:
+      - "9000"
+    volumes:
+      - ./www:/var/webserver/www
+      - ./log:/var/webserver/log
+      - ./.docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - backend
+
+  mail:
+    image: namshi/smtp
+    container_name: rycbar-mailer
+    restart: always
+    tty: true
+    environment:
+      SMARTHOST_ADDRESS: ${MAIL_SMTP_HOST}
+      SMARTHOST_PORT: ${MAIL_SMTP_PORT}
+      SMARTHOST_USER: ${MAIL_SMTP_USER}
+      SMARTHOST_PASSWORD: ${MAIL_SMTP_PASSWORD}
+    networks:
+      - backend
+
+  redis:
+    image: redis:alpine
+    container_name: rycbar-redis
+    restart: always
+    ports:
+      - "127.0.0.1:6380:6379"
+    networks:
+      - backend
+
+  laravel-schedule:
+    build:
+      context: ./.docker
+      dockerfile: php.Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+        - USER=${USER:-laravel}
+    container_name: rycbar-crontab
+    restart: always
+    volumes:
+      - ./www:/var/webserver/www
+      - ./log:/var/webserver/log
+    working_dir: /var/webserver/www
+    entrypoint: [ 'php', '/var/webserver/www/artisan', 'schedule:work' ]
+    networks:
+      - backend
+
+  laravel-queue:
+    build:
+      context: ./.docker
+      dockerfile: php.Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+        - USER=${USER:-laravel}
+    container_name: rycbar-queue
+    restart: always
+    volumes:
+      - ./www:/var/webserver/www
+      - ./log:/var/webserver/log
+    working_dir: /var/webserver/www
+    entrypoint: [ 'php', '/var/webserver/www/artisan', 'queue:work' ]
+    networks:
+      - backend
+
+  composer:
+    profiles: ["composer"]
+    build:
+      context: ./.docker
+      dockerfile: composer.Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+        - USER=${USER:-laravel}
+    container_name: rycbar-composer
+    restart: "no"
+    volumes:
+      - ./www:/var/webserver/www
+      - ./log:/var/webserver/log
+    working_dir: /var/webserver/www
+    depends_on:
+      - php
+    user: ${USER:-laravel} #system user
+    entrypoint: [ 'composer', '--ignore-platform-reqs' ]
+    networks:
+      - backend
+
+  artisan:
+    profiles: ["artisan"]
+    build:
+      context: ./.docker
+      dockerfile: php.Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+        - USER=${USER:-laravel}
+    container_name: rycbar-artisan
+    restart: "no"
+    volumes:
+      - ./www:/var/webserver/www
+      - ./log:/var/webserver/log
+    working_dir: /var/webserver/www
+    entrypoint: [ 'php', '/var/webserver/www/artisan' ]
+    networks:
+      - backend
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
