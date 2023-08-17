@@ -13,22 +13,20 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <x-head.tinymce-config></x-head.tinymce-config>
+        <x-head.prysmjs-config></x-head.prysmjs-config>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="bg-gray-100 font-sans antialiased leading-normal tracking-normal">
+        <div class="min-h-screen">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
+            @if (isset($h1))
+                <div class="container w-full md:max-w-5xl mx-auto pt-20">
+                    <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{ $h1 }}</h1>
+                </div>
             @endif
 
-            <!-- Page Content -->
-            <main>
+            <main class="container w-full md:max-w-5xl mx-auto pt-20">
                 {{ $slot }}
             </main>
         </div>
