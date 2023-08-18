@@ -14,7 +14,7 @@ class ArticleController extends Controller
     public function index()
     {
         return view('articles.index', [
-            'articles' => Article::get()
+            'articles' => Article::orderByDesc('id')->paginate(12)
         ]);
     }
 
@@ -31,7 +31,8 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        //
+        $article = Article::create($request->validated());
+        return redirect()->route('articles.show', [$article]);
     }
 
     /**
@@ -49,7 +50,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -57,7 +60,8 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        //
+        $article->update($request->validated());
+        return redirect()->route('articles.show', [$article]);
     }
 
     /**

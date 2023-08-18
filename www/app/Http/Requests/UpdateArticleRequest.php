@@ -2,7 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\ArticleStatusEnum;
+use App\Models\Article;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdateArticleRequest extends FormRequest
 {
@@ -11,7 +16,7 @@ class UpdateArticleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::user()->isAdmin();
     }
 
     /**
@@ -21,8 +26,25 @@ class UpdateArticleRequest extends FormRequest
      */
     public function rules(): array
     {
+        $article = Article::find($this->get('id'));
         return [
-            //
+            'status' => [
+                'required',
+                new Enum(ArticleStatusEnum::class)
+            ],
+            'title' => 'required|max:170',
+            'name' => [
+                'required',
+                'max:255',
+                Rule::unique('articles')->ignore($article)
+            ],
+            'slug' => [
+                'required',
+                'max:255',
+                Rule::unique('articles')->ignore($article)
+            ],
+            'preview_text' => '',
+            'detail_text' => ''
         ];
     }
 }

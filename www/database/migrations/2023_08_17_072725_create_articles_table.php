@@ -17,12 +17,13 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->char('status', 1)->default(ArticleStatusEnum::DRAFT->value);
+            $table->string('title');
             $table->string('name');
             $table->string('slug');
             $table->integer('views_count')->default(0);
             $table->integer('sort')->default(500);
             $table->text('preview_text');
-            $table->text('text');
+            $table->text('detail_text');
         });
     }
 

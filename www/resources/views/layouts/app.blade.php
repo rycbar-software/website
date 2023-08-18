@@ -7,28 +7,31 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <x-head.tinymce-config></x-head.tinymce-config>
-        <x-head.prysmjs-config></x-head.prysmjs-config>
+        @if(\Illuminate\Support\Facades\Auth::user()?->isAdmin())
+            <x-head.tinymce-config></x-head.tinymce-config>
+            <x-head.prysmjs-config></x-head.prysmjs-config>
+        @endif
     </head>
     <body class="bg-gray-100 font-sans antialiased leading-normal tracking-normal">
-        <div class="min-h-screen">
-            @include('layouts.navigation')
+        <div class="min-h-screen flex flex-col justify-between">
+            <div>
+                @include('layouts.navigation')
 
-            @if (isset($h1))
-                <div class="container w-full md:max-w-5xl mx-auto pt-20">
-                    <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{ $h1 }}</h1>
-                </div>
-            @endif
+                @if (isset($h1))
+                    <div class="container w-full md:max-w-5xl mx-auto pt-20">
+                        <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{ $h1 }}</h1>
+                    </div>
+                @endif
 
-            <main class="container w-full md:max-w-5xl mx-auto pt-20">
-                {{ $slot }}
-            </main>
+                <main class="container w-full md:max-w-5xl mx-auto py-20">
+                    {{ $slot }}
+                </main>
+            </div>
+            <footer>
+                test
+            </footer>
         </div>
     </body>
 </html>
