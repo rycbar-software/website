@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot:h1>Edit article "{{ $article->name }}"</x-slot:h1>
+    <x-slot:breadcrumbs>{{ Breadcrumbs::render(request()->route()->getName(), $article) }}</x-slot:breadcrumbs>
     <form action="{{ route('articles.update', [$article]) }}" method="POST">
         @csrf
         @method('PUT')
