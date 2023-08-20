@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\PublishedArticleMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -24,9 +26,7 @@ Route::get('/contacts', function () {
     return view('contacts');
 })->name('contacts');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['admin'])->name('dashboard');
+Route::get('/dashboard', [FeedbackController::class, 'index'])->middleware(['admin'])->name('dashboard');
 
 /*
 Route::middleware('auth')->group(function () {
@@ -39,3 +39,4 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::resource('articles', ArticleController::class);
+Route::resource('products', ProductController::class);

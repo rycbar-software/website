@@ -5,4 +5,7 @@
             Contacts
         </div>
     </div>
+    <div>
+        @include('feedback.form')
+    </div>
 </x-app-layout>

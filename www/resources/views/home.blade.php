@@ -16,10 +16,13 @@
                         Who we are
                     </section>
                     <section class="screen">
-                        Partners
+                        How we work (prices, schedule, etc.)
                     </section>
                     <section class="screen">
-                        Contacts
+                        @include('feedback.form')
+                    </section>
+                    <section class="screen">
+                        Partners
                     </section>
                 </div>
                 @include('components.footer')

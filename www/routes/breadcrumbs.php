@@ -34,8 +34,38 @@ Breadcrumbs::for('articles.edit', function (BreadcrumbTrail $trail, $article) {
     $trail->push('Edit', route('articles.edit', $article));
 });
 
+// Home > Products
+Breadcrumbs::for('products.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Products', route('products.index'));
+});
+
+// Home > Products > Create
+Breadcrumbs::for('products.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('products.index');
+    $trail->push('Create', route('products.create'));
+});
+
+// Home > Products > [Product]
+Breadcrumbs::for('products.show', function (BreadcrumbTrail $trail, $product) {
+    $trail->parent('products.index');
+    $trail->push($product->title, route('products.show', $product));
+});
+
+// Home > Products > [Product] > Edit
+Breadcrumbs::for('products.edit', function (BreadcrumbTrail $trail, $product) {
+    $trail->parent('products.index');
+    $trail->push($product->title, route('products.show', $product));
+    $trail->push('Edit', route('products.edit', $product));
+});
+
 // Home > Contacts
 Breadcrumbs::for('contacts', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Contacts', route('contacts'));
+});
+
+// Dashboard
+Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
+    $trail->push('Dashboard', route('dashboard'));
 });

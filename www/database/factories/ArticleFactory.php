@@ -20,7 +20,7 @@ class ArticleFactory extends Factory
     {
         $title = $this->faker->streetName;
         $name = $title . ' dev notes';
-        $createdAt = $this->faker->dateTimeBetween(strtotime('2 years ago'), time() - 60);
+        $createdAt = $this->faker->dateTimeBetween('-2 years', '-60 minutes');
         $detailText = '';
         for ($i = 0; $i < 6; $i ++) {
             $paragraph = $this->faker->text(800);
@@ -35,7 +35,7 @@ class ArticleFactory extends Factory
             'name' => $name,
             'slug' => Str::slug($name),
             'created_at' => $createdAt,
-            'updated_at' => $this->faker->dateTimeBetween($createdAt, time()),
+            'updated_at' => $this->faker->dateTimeBetween($createdAt),
             'preview_text' => $previewText,
             'detail_text' => $detailText,
         ];

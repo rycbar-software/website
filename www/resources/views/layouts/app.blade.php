@@ -25,6 +25,8 @@
             <x-head.tinymce-config></x-head.tinymce-config>
             <x-head.prysmjs-config></x-head.prysmjs-config>
         @endif
+
+        <link rel="preload" href="{{ asset('/assets/fonts/raleway/style.css') }}" as="style">
     </head>
     <body class="bg-gray-100 font-sans antialiased leading-normal tracking-normal">
         @if (request()->route()->getName() == 'home')
@@ -53,5 +55,7 @@
                 @include('components.footer')
             </div>
         @endif
+        <script src="{{ asset('/assets/fontobserver/fontobserver.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('/assets/fonts/raleway/style.css') }}">
     </body>
 </html>

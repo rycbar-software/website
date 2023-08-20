@@ -21,7 +21,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="flex h-full">
-                    <x-nav-link :href="route('home')" :active="false">
+                    <x-nav-link :href="route('products.index')" :active="false">
                         Products
                     </x-nav-link>
                     <x-nav-link :href="route('home')" :active="false">
