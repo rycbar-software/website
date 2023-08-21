@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('dashboard')" :class="'font-raleway'">
                         RYCBAR
                     </x-nav-link>
                 </div>
@@ -21,13 +21,13 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="flex h-full">
-                    <x-nav-link :href="route('products.index')" :active="false">
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         Products
                     </x-nav-link>
-                    <x-nav-link :href="route('home')" :active="false">
+                    <x-nav-link :href="route('partners.index')" :active="request()->routeIs('partners.index')">
                         Partners
                     </x-nav-link>
-                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles')">
+                    <x-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
                         Articles
                     </x-nav-link>
                     <x-nav-link :href="route('contacts')" :active="request()->routeIs('contacts')">

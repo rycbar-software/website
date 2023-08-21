@@ -1,6 +1,6 @@
 @unless ($breadcrumbs->isEmpty())
-    <nav class="container w-full md:max-w-5xl mx-auto pt-5">
-        <ol class="p-4 rounded flex flex-wrap bg-gray-300 text-sm text-gray-800">
+    <nav class="container w-full md:max-w-5xl mx-auto">
+        <ol class="py-4 flex flex-wrap text-sm text-gray-800">
             @foreach ($breadcrumbs as $breadcrumb)
 
                 @if ($breadcrumb->url && !$loop->last)

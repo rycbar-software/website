@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\PublishedArticleMiddleware;
@@ -40,3 +41,4 @@ require __DIR__.'/auth.php';
 
 Route::resource('articles', ArticleController::class);
 Route::resource('products', ProductController::class);
+Route::resource('partners', PartnerController::class);
