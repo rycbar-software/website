@@ -1,22 +1,14 @@
 <x-app-layout>
     <x-slot:h1>Products</x-slot:h1>
-    <section class="divide-y divide-gray-200 dark:divide-gray-700">
+    <section class="">
         @foreach($products as $product)
-            <article class="py-12 flex">
-                <img src="{{ $product->getPreview() }}" alt="">
-                <div class="space-y-5 xl:col-span-3 w-3/4">
-                    <div class="space-y-6">
-                        <h2 class="text-2xl font-bold leading-8 tracking-tight">
-                            <a class="text-gray-900" href="{{ route('products.show', $product) }}">{{ $product->name }}</a>
-                        </h2>
-                        <a href="{{ $product->url }}">Github link</a>
-                        <div class="prose max-w-none text-gray-500">
-                            {!! $product->description !!}
-                        </div>
-                    </div>
-                    <div class="text-base font-medium leading-6">
-                        <a href="{{ route('products.show', $product) }}" class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">Read more</a>
-                    </div>
+            <article class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row mb-10">
+                <img class="object-cover w-full rounded-t-lg h-96 md:h-full md:w-auto md:rounded-none md:rounded-l-lg" src="{{ $product->getPreview() }}" title="{{ $product->name }}" alt="{{ $product->name }}">
+
+                <div class="flex flex-col justify-between p-4 leading-normal">
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a class="hover:text-gray-700 text-gray-900" href="{{ route('products.show', $product) }}">{{ $product->name }}</a></h2>
+                    <p><a href="{{ $product->url }}">Github link</a></p>
+                    <div class="mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-48 overflow-hidden">{!! $product->description !!}</div>
                 </div>
             </article>
         @endforeach

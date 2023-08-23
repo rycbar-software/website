@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFeedbackRequest;
-use App\Http\Requests\UpdateFeedbackRequest;
 use App\Models\Feedback;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
 
 class FeedbackController extends Controller
 {
@@ -23,7 +24,32 @@ class FeedbackController extends Controller
      */
     public function store(StoreFeedbackRequest $request)
     {
-        Feedback::create($request->validated());
+        $response = [
+            'success' => false,
+            'message' => ''
+        ];
+        $limiterKey = 'feedback:'.$request->ip();
+
+        $executed = RateLimiter::attempt(
+            $limiterKey,
+            3,
+            function() {
+            }
+        );
+
+        if (!$executed) {
+            $response['message'] = 'Too many requests sent. Please wait 1 minute before next attempt!';
+        } else {
+            try {
+                Feedback::create($request->validated());
+                $response['success'] = true;
+                $response['message'] = 'We save you request and will contact with You soon';
+            } catch (\Exception $e) {
+                $response['message'] = $e->getMessage();
+            }
+        }
+        
+        return response()->json($response);
     }
 
     /**

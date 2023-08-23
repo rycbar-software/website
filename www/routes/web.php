@@ -28,6 +28,7 @@ Route::get('/contacts', function () {
 })->name('contacts');
 
 Route::get('/dashboard', [FeedbackController::class, 'index'])->middleware(['admin'])->name('dashboard');
+Route::post('/feedbacks/store', [FeedbackController::class, 'store']);
 
 /*
 Route::middleware('auth')->group(function () {
