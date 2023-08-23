@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFeedbackRequest;
 use App\Models\Feedback;
-use Illuminate\Cache\RateLimiting\Limit;
+use App\Notifications\FeedbackCreated;
 use Illuminate\Support\Facades\RateLimiter;
 
 class FeedbackController extends Controller
@@ -37,18 +37,24 @@ class FeedbackController extends Controller
             }
         );
 
+        $feedback = null;
+
         if (!$executed) {
             $response['message'] = 'Too many requests sent. Please wait 1 minute before next attempt!';
         } else {
             try {
-                Feedback::create($request->validated());
+                $feedback = Feedback::create($request->validated());
                 $response['success'] = true;
                 $response['message'] = 'We save you request and will contact with You soon';
             } catch (\Exception $e) {
                 $response['message'] = $e->getMessage();
             }
         }
-        
+
+        if ($feedback) {
+            $feedback->notify(new FeedbackCreated($feedback));
+        }
+
         return response()->json($response);
     }
 
