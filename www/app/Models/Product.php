@@ -2,19 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
-class Product extends Model implements HasMedia
+class Product extends DataModel
 {
-    use HasFactory, InteractsWithMedia;
-
-    protected $guarded = [];
-
-    public function getPreview(): string
+    public function getDynamicSEOData(): SEOData
     {
-        return $this->getMedia('preview')->first()?->getUrl() ?: '';
+        return new SEOData(
+            title: $this->name,
+            description: $this->name
+        );
     }
 }

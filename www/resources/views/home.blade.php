@@ -53,6 +53,20 @@
                     <section class="screen flex items-center">
                         <div>
                             <h2 class="text-6xl font-raleway mb-10">Our partners</h2>
+                            <div class="flex">
+                                <a href="">Umiu.com.ua</a>
+                                <a href="">Sentrumbookstore</a>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="screen flex items-center">
+                        <div class="w-full">
+                            <div class="text-xl italic font-semibold text-right text-gray-900">
+                                Run, you clever boy, and remember
+                            </div>
+                            <div class="text-right italic">
+                                - Oswin Oswald
+                            </div>
                         </div>
                     </section>
                 </div>

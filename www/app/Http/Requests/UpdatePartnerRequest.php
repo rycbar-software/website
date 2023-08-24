@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Partner;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UpdatePartnerRequest extends FormRequest
 {
@@ -11,7 +14,7 @@ class UpdatePartnerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::user()->isAdmin();
     }
 
     /**
@@ -21,8 +24,21 @@ class UpdatePartnerRequest extends FormRequest
      */
     public function rules(): array
     {
+        $partner = Partner::find($this->get('id'));
         return [
-            //
+            'name' => [
+                'string',
+                'required',
+                'max:255',
+                Rule::unique('partners')->ignore($partner)
+            ],
+            'slug' => [
+                'string',
+                'required',
+                'max:255',
+                Rule::unique('partners')->ignore($partner)
+            ],
+            'description' => ''
         ];
     }
 }

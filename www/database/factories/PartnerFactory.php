@@ -2,24 +2,17 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Partner>
- */
-class PartnerFactory extends Factory
+class PartnerFactory extends AbstractDataFactory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    public function getType(): string
     {
-        $name = $this->faker->company();
+        return 'Partner';
+    }
+
+    protected function customDefinition(): array
+    {
         return [
-            'name' => $name,
-            'description' => $name . ' details ' . $this->faker->realText()
+            'name' => $this->faker->company()
         ];
     }
 }

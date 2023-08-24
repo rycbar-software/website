@@ -23,7 +23,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('partners.create');
     }
 
     /**
@@ -31,7 +31,8 @@ class PartnerController extends Controller
      */
     public function store(StorePartnerRequest $request)
     {
-        //
+        $partner = Partner::create($request->validated());
+        return redirect()->route('partners.show', [$partner]);
     }
 
     /**
@@ -39,7 +40,9 @@ class PartnerController extends Controller
      */
     public function show(Partner $partner)
     {
-        //
+        return view('partners.show', [
+            'partner' => $partner
+        ]);
     }
 
     /**
@@ -47,7 +50,9 @@ class PartnerController extends Controller
      */
     public function edit(Partner $partner)
     {
-        //
+        return view('partners.edit', [
+            'partner' => $partner
+        ]);
     }
 
     /**
@@ -55,7 +60,8 @@ class PartnerController extends Controller
      */
     public function update(UpdatePartnerRequest $request, Partner $partner)
     {
-        //
+        $partner->update($request->validated());
+        return redirect()->route('partners.show', [$partner]);
     }
 
     /**

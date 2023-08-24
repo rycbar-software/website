@@ -1,5 +1,8 @@
 <x-app-layout>
     <x-slot:h1>Articles</x-slot:h1>
+    @can('create article')
+        <x-forms.buttons.add href="{{ route('articles.create') }}"></x-forms.buttons.add>
+    @endcan
     <section class="divide-y divide-gray-200 dark:divide-gray-700">
         @foreach($articles as $article)
             <article class="py-12 flex">

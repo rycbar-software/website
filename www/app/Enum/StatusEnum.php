@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-enum ArticleStatusEnum: string
+enum StatusEnum: string
 {
     case DRAFT = 'D';
     case PUBLISHED = 'P';

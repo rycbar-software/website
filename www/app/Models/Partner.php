@@ -4,17 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Partner extends Model implements HasMedia
+class Partner extends DataModel
 {
-    use HasFactory, InteractsWithMedia;
-
-    protected $guarded = [];
-
-    public function getPreview(): string
+    public function getDynamicSEOData(): SEOData
     {
-        return '';
+        return new SEOData(
+            title: $this->name,
+            description: $this->name
+        );
     }
 }

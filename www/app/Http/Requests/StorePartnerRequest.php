@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StorePartnerRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StorePartnerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::user()->isAdmin();
     }
 
     /**
@@ -22,7 +23,9 @@ class StorePartnerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'string|max:255|required|unique:partners',
+            'slug' => 'string|max:255|required|unique:partners',
+            'description' => ''
         ];
     }
 }

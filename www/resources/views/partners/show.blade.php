@@ -1,12 +1,11 @@
 <x-app-layout>
-    <x-slot:h1>{{ $article->name }}</x-slot:h1>
-    <x-slot:breadcrumbs>{{ Breadcrumbs::render(request()->route()->getName(), $article) }}</x-slot:breadcrumbs>
-    <x-slot:seo>{!! seo()->for($article) !!}</x-slot:seo>
+    <x-slot:h1>{{ $partner->name }}</x-slot:h1>
+    <x-slot:breadcrumbs>{{ Breadcrumbs::render(request()->route()->getName(), $partner) }}</x-slot:breadcrumbs>
+    <x-slot:seo>{!! seo()->for($partner) !!}</x-slot:seo>
     @can('edit article')
-        <x-forms.buttons.edit href="{{ route('articles.edit', [$article]) }}"></x-forms.buttons.edit>
+        <x-forms.buttons.edit href="{{ route('partners.edit', [$partner]) }}"></x-forms.buttons.edit>
     @endcan
     <article>
-        <p class="text-sm md:text-base font-normal text-gray-600">{{ $article->publishDate() }}</p>
-        <div>{!! $article->detail_text !!}</div>
+        <div>{!! $partner->getDetailText() !!}</div>
     </article>
 </x-app-layout>

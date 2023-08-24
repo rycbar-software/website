@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Enum\ArticleStatusEnum;
+use App\Enum\StatusEnum;
 use App\Models\Article;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +30,7 @@ class UpdateArticleRequest extends FormRequest
         return [
             'status' => [
                 'required',
-                new Enum(ArticleStatusEnum::class)
+                new Enum(StatusEnum::class)
             ],
             'title' => 'required|max:170',
             'name' => [
