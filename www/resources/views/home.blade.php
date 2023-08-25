@@ -54,11 +54,14 @@
                         </div>
                     </section>
                     <section class="screen flex items-center">
-                        <div>
+                        <div class="w-full">
                             <h2 class="text-6xl font-raleway mb-10">Our partners</h2>
-                            <div class="flex">
-                                <a href="">Umiu.com.ua</a>
-                                <a href="">Sentrumbookstore</a>
+                            <div class="flex flex-wrap justify-center py-10">
+                                @foreach($partners as $partner)
+                                    <a href="{{ route('partners.show', [$partner]) }}" class="m-5 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
+                                        <h5 class="text-2xl font-bold tracking-tight text-gray-900">{{ $partner->getName() }}</h5>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     </section>

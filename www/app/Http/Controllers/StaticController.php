@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partner;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class StaticController extends Controller
@@ -9,6 +10,7 @@ class StaticController extends Controller
     public function home()
     {
         return view('home', [
+            'partners' => Partner::all(),
             'SEOData' => new SEOData(
                 title: 'RYCBAR - maintenance and development of long-life software',
                 description: 'RYCBAR is company with main idea of long-life software maintenance'
