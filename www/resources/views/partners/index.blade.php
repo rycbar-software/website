@@ -10,7 +10,7 @@
                 <div class="space-y-5 xl:col-span-3 w-3/4">
                     <div class="space-y-6">
                         <h2 class="text-2xl font-bold leading-8 tracking-tight">
-                            <a class="text-gray-900" href="{{ route('partners.show', $partner) }}">{{ $partner->name }}</a>
+                            <a class="text-gray-900" href="{{ route('partners.show', $partner) }}">{{ $partner->getName() }}</a>
                         </h2>
                         <div class="prose max-w-none text-gray-500">
                             {!! $partner->getPreviewText() !!}

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot:h1>{{ $partner->name }}</x-slot:h1>
+    <x-slot:h1>{{ $partner->getName() }}</x-slot:h1>
     <x-slot:breadcrumbs>{{ Breadcrumbs::render(request()->route()->getName(), $partner) }}</x-slot:breadcrumbs>
     <x-slot:seo>{!! seo()->for($partner) !!}</x-slot:seo>
     @can('edit article')

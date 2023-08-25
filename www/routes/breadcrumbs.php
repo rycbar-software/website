@@ -40,7 +40,7 @@ foreach ($dataRoutes as $routeGroup) {
     // Home > Entities > [Entity]
     Breadcrumbs::for($routeGroup . '.show', function (BreadcrumbTrail $trail, $entity) use ($routeGroup) {
         $trail->parent($routeGroup . '.index');
-        $trail->push($entity->name, route($routeGroup . '.show', $entity));
+        $trail->push($entity->getName(), route($routeGroup . '.show', $entity));
     });
     // Home > Entities > [Entity] > Edit
     Breadcrumbs::for($routeGroup . '.edit', function (BreadcrumbTrail $trail, $entity) use ($routeGroup) {

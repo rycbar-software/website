@@ -23,6 +23,15 @@ abstract class DataModel extends Model implements HasMedia
         'created_at' => 'datetime:Y-m-d'
     ];
 
+    public function getName(): string
+    {
+        $name = $this->name;
+        if (!$this->isPublished()) {
+            $name = '[Draft] ' . $name;
+        }
+        return $name;
+    }
+
     public function getPreviewPicture(): ?string
     {
         return $this->getMedia('preview_picture')->first()?->getUrl() ?: '';

@@ -18,9 +18,13 @@ class ProductSeeder extends Seeder
 
         $faker = Factory::create();
 
-        $products = Product::factory()->count(4)->create();
+        $products = Product::factory()->count(2)->create();
         foreach ($products as $product) {
-            $product->addMediaFromUrl($faker->imageUrl())->toMediaCollection('preview');
+            $product->addMediaFromUrl($faker->imageUrl())->toMediaCollection('preview_picture');
+        }
+        $products = Product::factory()->count(2)->published()->create();
+        foreach ($products as $product) {
+            $product->addMediaFromUrl($faker->imageUrl())->toMediaCollection('preview_picture');
         }
     }
 }

@@ -8,7 +8,7 @@
             <article class="py-12 flex">
                 <div class="space-y-2 w-1/4">
                     <dl>
-                        <dt>Published</dt>
+                        <dt>{{ $article->isPublished() ? 'Published' : 'Draft' }}</dt>
                         <dd class="text-base font-medium leading-6 text-gray-500">
                             <time datetime="2023-08-05T00:00:00.000Z">{{ $article->publishDate() }}</time>
                         </dd>
@@ -17,7 +17,7 @@
                 <div class="space-y-5 xl:col-span-3 w-3/4">
                     <div class="space-y-6">
                         <h2 class="text-2xl font-bold leading-8 tracking-tight">
-                            <a class="text-gray-900" href="{{ route('articles.show', $article) }}">{{ $article->name }}</a>
+                            <a class="text-gray-900" href="{{ route('articles.show', $article) }}">{{ $article->getName() }}</a>
                         </h2>
                         <div class="prose max-w-none text-gray-500">
                             {!! $article->preview_text !!}

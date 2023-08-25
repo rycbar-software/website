@@ -14,6 +14,7 @@ class PartnerSeeder extends Seeder
     public function run(): void
     {
         Partner::truncate();
-        Partner::factory()->count(4)->create();
+        Partner::factory()->count(2)->create();
+        Partner::factory()->count(2)->published()->create();
     }
 }
