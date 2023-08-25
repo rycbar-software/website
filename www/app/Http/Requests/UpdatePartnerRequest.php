@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\StatusEnum;
 use App\Models\Partner;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
 
 class UpdatePartnerRequest extends FormRequest
 {
@@ -26,19 +28,22 @@ class UpdatePartnerRequest extends FormRequest
     {
         $partner = Partner::find($this->get('id'));
         return [
+            'status' => [
+                'required',
+                new Enum(StatusEnum::class)
+            ],
             'name' => [
-                'string',
                 'required',
                 'max:255',
                 Rule::unique('partners')->ignore($partner)
             ],
             'slug' => [
-                'string',
                 'required',
                 'max:255',
                 Rule::unique('partners')->ignore($partner)
             ],
-            'description' => ''
+            'preview_text' => '',
+            'detail_text' => ''
         ];
     }
 }

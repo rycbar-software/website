@@ -32,7 +32,6 @@ class UpdateArticleRequest extends FormRequest
                 'required',
                 new Enum(StatusEnum::class)
             ],
-            'title' => 'required|max:170',
             'name' => [
                 'required',
                 'max:255',

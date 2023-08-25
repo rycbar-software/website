@@ -23,7 +23,6 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'status' => [new Enum(StatusEnum::class)],
-            'title' => 'required|max:170',
             'name' => 'required|unique:articles|max:255',
             'slug' => 'required|unique:articles|max:255',
             'preview_text' => '',

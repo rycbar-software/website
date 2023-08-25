@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enum\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Enum;
 
 class StorePartnerRequest extends FormRequest
 {
@@ -23,9 +25,11 @@ class StorePartnerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|max:255|required|unique:partners',
-            'slug' => 'string|max:255|required|unique:partners',
-            'description' => ''
+            'status' => [new Enum(StatusEnum::class)],
+            'name' => 'required|unique:articles|max:255',
+            'slug' => 'required|unique:articles|max:255',
+            'preview_text' => '',
+            'detail_text' => ''
         ];
     }
 }
