@@ -1,5 +1,7 @@
 <x-app-layout>
     <x-slot:h1>Partners</x-slot:h1>
+    <x-slot:breadcrumbs>{{ Breadcrumbs::render(request()->route()->getName()) }}</x-slot:breadcrumbs>
+    <x-slot:seo>{!! seo($SEOData) !!}</x-slot:seo>
     @can('create partner')
         <x-forms.buttons.add href="{{ route('partners.create') }}"></x-forms.buttons.add>
     @endcan

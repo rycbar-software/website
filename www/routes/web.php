@@ -5,6 +5,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StaticController;
 use App\Http\Middleware\PublishedArticleMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -19,13 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [StaticController::class, 'home'])->name('home');
+Route::get('/contacts', [StaticController::class, 'contacts'])->name('contacts');
 
-Route::get('/contacts', function () {
-    return view('contacts');
-})->name('contacts');
 
 Route::get('/dashboard', [FeedbackController::class, 'index'])->middleware(['admin'])->name('dashboard');
 Route::post('/feedbacks/store', [FeedbackController::class, 'store']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,11 @@ class ProductController extends Controller
     public function index()
     {
         return view('products.index', [
-            'products' => Product::orderByDesc('id')->paginate(12)
+            'products' => Product::orderByDesc('id')->paginate(12),
+            'SEOData' => new SEOData(
+                title: 'Products of RYCBAR software',
+                description: 'List of open source products, developed by RYCBAR or Andriy Kryvenko'
+            )
         ]);
     }
 

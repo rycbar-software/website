@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class ArticleController extends Controller
 {
@@ -14,7 +15,11 @@ class ArticleController extends Controller
     public function index()
     {
         return view('articles.index', [
-            'articles' => Article::orderByDesc('id')->paginate(12)
+            'articles' => Article::orderByDesc('id')->paginate(12),
+            'SEOData' => new SEOData(
+                title: 'Articles - RYCBAR software',
+                description: 'List of articles, created by RYCBAR software team or Andriy Kryvenko'
+            )
         ]);
     }
 

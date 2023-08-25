@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePartnerRequest;
 use App\Http\Requests\UpdatePartnerRequest;
 use App\Models\Partner;
+use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class PartnerController extends Controller
 {
@@ -14,7 +15,11 @@ class PartnerController extends Controller
     public function index()
     {
         return view('partners.index', [
-            'partners' => Partner::get()
+            'partners' => Partner::get(),
+            'SEOData' => new SEOData(
+                title: 'Partners of RYCBAR software',
+                description: 'List of partners, with who RYCBAR have collaboration'
+            )
         ]);
     }
 

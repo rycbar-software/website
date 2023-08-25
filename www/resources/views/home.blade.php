@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot:h1>RYCBAR software</x-slot:h1>
+    <x-slot:seo>{!! seo($SEOData) !!}</x-slot:seo>
+
     <div class="parallax-wrapper">
         <div class="parallax">
             <section class="screen hero">
