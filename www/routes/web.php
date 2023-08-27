@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StaticController;
 use App\Http\Middleware\PublishedArticleMiddleware;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,7 @@ Route::get('/contacts', [StaticController::class, 'contacts'])->name('contacts')
 
 
 Route::get('/dashboard', [FeedbackController::class, 'index'])->middleware(['admin'])->name('dashboard');
-Route::post('/feedbacks/store', [FeedbackController::class, 'store']);
+Route::post('/feedbacks/store', [FeedbackController::class, 'store'])->name('feedbacks.store');
 
 /*
 Route::middleware('auth')->group(function () {
@@ -40,3 +41,8 @@ require __DIR__.'/auth.php';
 Route::resource('articles', ArticleController::class);
 Route::resource('products', ProductController::class);
 Route::resource('partners', PartnerController::class);
+
+Route::delete('/feedbacks/{feedback}', function (Feedback $feedback) {
+    $feedback->delete();
+    return redirect()->route('dashboard');
+})->name('feedbacks.destroy');

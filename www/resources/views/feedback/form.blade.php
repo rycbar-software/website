@@ -33,20 +33,26 @@
 <script>
     function handleFeedbackSubmit(form)
     {
+        let container = document.querySelector('.js-feedback-response');
+        let btn = container.closest('form').querySelector('button[type=submit]');
+        btn.setAttribute('disabled', 'disabled');
+        btn.classList.add('bg-purple-400');
         let xhr = new XMLHttpRequest();
-        xhr.open('POST', '/feedbacks/store', true);
+        xhr.open('POST', '{{ route('feedbacks.store') }}', true);
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 let response = JSON.parse(xhr.response);
-                let container = document.querySelector('.js-feedback-response');
 
                 container.innerHTML = response.message;
                 if (response.success) {
                     container.classList.remove('text-red-600');
                     container.classList.add('text-green-600');
+                    btn.remove();
                 } else {
                     container.classList.remove('text-green-600');
                     container.classList.add('text-red-600');
+                    btn.removeAttribute('disabled');
+                    btn.classList.remove('bg-purple-400');
                 }
             }
         };

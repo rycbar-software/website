@@ -3,7 +3,10 @@
     <x-slot:breadcrumbs>{{ Breadcrumbs::render(request()->route()->getName(), $article) }}</x-slot:breadcrumbs>
     <x-slot:seo>{!! seo()->for($article) !!}</x-slot:seo>
     @can('edit article')
-        <x-forms.buttons.edit href="{{ route('articles.edit', [$article]) }}"></x-forms.buttons.edit>
+        <div class="flex">
+            <x-forms.buttons.edit href="{{ route('articles.edit', [$article]) }}"></x-forms.buttons.edit>
+            <x-forms.buttons.delete action="{{ route('articles.destroy', [$article]) }}"></x-forms.buttons.delete>
+        </div>
     @endcan
     <article>
         <p class="text-sm md:text-base font-normal text-gray-600">{{ $article->publishDate() }}</p>
