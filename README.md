@@ -20,7 +20,6 @@ Webserver included:
 1. **[Prepare](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04)** server;
 2. **[Install](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)** **docker**;
 3. **[Install](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)** **docker-compose**;
-4. Optional. For production server configure **[acme-companion](https://github.com/nginx-proxy/acme-companion)** - nginx-proxy an certificates.
 
 ## Installation:
 
@@ -66,13 +65,22 @@ cp .env.example .env
 
 ~~~ 
 mkdir www
+cd www
+git clone you-repository .
+./nginx-proxy-up.sh
+docker-compose build \  
+docker-compose up -d
+docker-compose run --rm composer install --no-dev -o
+docker-compose run --rm artisan key:generate
+docker-compose run --rm artisan migrate
+docker-compose run --rm artisan admin:create
+
 ~~~
 
 ### 6. Build images and up server
 
 ~~~
-docker-compose build \  
-docker-compose up -d
+
 ~~~
 
 ### 7. Initialize crontab
@@ -86,8 +94,11 @@ docker-compose up -d
 If you clone existing repository - then use follow:
 
 ~~~ 
-cd www
-git clone you-repository .
+
+~~~
+
+~~~ 
+
 ~~~
 
 In case, if you create new repository - use composer:
