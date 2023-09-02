@@ -2,7 +2,14 @@
     @csrf
     <div class="">
         <label class="block text-gray-500 font-bold mb-1" for="name">Organization name</label>
-        <input name="name" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="organization-name" type="text" placeholder="You organization name...">
+        <input
+            name="name"
+            id="name"
+            autocomplete="name"
+            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+            type="text"
+            placeholder="You organization name..."
+        >
     </div>
     <div class="mt-6">
         <label class="block text-gray-500 font-bold mb-1" for="email">Email</label>
@@ -11,6 +18,7 @@
             id="email"
             type="email"
             placeholder="you@email.com"
+            autocomplete="email"
             required
             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
         >
