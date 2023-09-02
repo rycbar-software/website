@@ -56,6 +56,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'scheme' => env('APP_SCHEME', 'http'),
 
     'admin_email' => env('ADMIN_EMAIL', 'mr.blackkrab@gmail.com'),
 
