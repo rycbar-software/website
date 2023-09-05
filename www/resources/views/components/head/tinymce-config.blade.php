@@ -2,7 +2,7 @@
 <script>
     tinymce.init({
         selector: 'textarea.tynimce-editor',
-        plugins: 'code table lists codesample',
+        plugins: 'code table lists codesample link',
         toolbar: 'undo redo | blocks | codesample | bold italic | bullist numlist | code'
     });
 </script>
