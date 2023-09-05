@@ -26,8 +26,8 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'status' => [new Enum(StatusEnum::class)],
-            'name' => 'required|unique:articles|max:255',
-            'slug' => 'required|unique:articles|max:255',
+            'name' => 'required|unique:products|max:255',
+            'slug' => 'required|unique:products|max:255',
             'preview_text' => '',
             'detail_text' => '',
             'external_link' => 'string|nullable'
