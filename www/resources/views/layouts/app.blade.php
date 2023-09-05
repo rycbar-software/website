@@ -48,6 +48,18 @@
                         {{ Breadcrumbs::render(request()->route()->getName()) }}
                     @endif
 
+                    @if($errors->any())
+                        <div class="container w-full md:max-w-5xl mx-auto py-20">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+
                     <main class="container w-full md:max-w-5xl mx-auto py-20">
                         {{ $slot }}
                     </main>

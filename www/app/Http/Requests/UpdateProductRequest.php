@@ -42,6 +42,7 @@ class UpdateProductRequest extends FormRequest
                 'max:255',
                 Rule::unique('products')->ignore($product)
             ],
+            'preview_picture' => 'image|nullable',
             'preview_text' => '',
             'detail_text' => '',
             'external_link' => 'string|nullable'

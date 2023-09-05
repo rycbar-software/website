@@ -5,7 +5,7 @@
     * @var DataModel $entity
     */
 @endphp
-<form {{ $attributes }} method="POST">
+<form {{ $attributes }} method="POST" enctype="multipart/form-data">
     @csrf
     @if($entity?->id)
         <input type="hidden" name="id" value="{{ $entity->id }}">

@@ -65,7 +65,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->validated());
+        $product->update($request->safe()->except(['preview_picture']));
+
+        if ($request->hasFile('preview_picture')) {
+            $product->clearMediaCollection('preview_picture');
+            $product->addMediaFromRequest('preview_picture')->toMediaCollection('preview_picture');
+        }
         return redirect()->route('products.show', [$product]);
     }
 
