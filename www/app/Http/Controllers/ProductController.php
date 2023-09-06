@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use App\Domain\Product\Service\ProductService;
+use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Product;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class ProductController extends Controller
 {
+    private ProductService $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -36,7 +44,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->validated());
+        $product = $this->productService->create($request->getDTO());
+
         return redirect()->route('products.show', [$product]);
     }
 
@@ -65,12 +74,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->safe()->except(['preview_picture']));
-
-        if ($request->hasFile('preview_picture')) {
-            $product->clearMediaCollection('preview_picture');
-            $product->addMediaFromRequest('preview_picture')->toMediaCollection('preview_picture');
-        }
+        $this->productService->update($product, $request->getDTO());
         return redirect()->route('products.show', [$product]);
     }
 
