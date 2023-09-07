@@ -14,9 +14,9 @@
                 <div class="sticky top-0 bg-white z-10">
                     @include('layouts.navigation')
                 </div>
-                <div class="container w-full md:max-w-5xl mx-auto">
-                    <section class="screen flex items-center border-b-2">
-                        <div>
+                <div class="container">
+                    <section class="screen flex items-center border-b-2 py-5">
+                        <div class="w-full">
                             <h2 class="text-6xl font-raleway mb-10">Who we are</h2>
                             <div class="text-lg text-justify">
                                 <p class="mb-3">
@@ -32,8 +32,8 @@
                             </div>
                         </div>
                     </section>
-                    <section class="screen flex items-center border-b-2">
-                        <div>
+                    <section class="screen flex items-center border-b-2 py-5">
+                        <div class="w-full">
                             <h2 class="text-6xl font-raleway mb-10">How we works</h2>
                             <div class="text-lg text-justify">
                                 <p class="mb-3">
@@ -48,13 +48,13 @@
                             </div>
                         </div>
                     </section>
-                    <section class="screen flex items-center border-b-2">
-                        <div>
+                    <section class="screen flex items-center border-b-2 py-5">
+                        <div class="w-full">
                             <h2 class="text-6xl font-raleway mb-10">Contact us</h2>
                             @include('feedback.form')
                         </div>
                     </section>
-                    <section class="screen flex items-center">
+                    <section class="screen flex items-center border-b-2 py-5">
                         <div class="w-full">
                             <h2 class="text-6xl font-raleway mb-10">Our partners</h2>
                             <div class="flex flex-wrap justify-center py-10">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </section>
-                    <section class="screen flex items-center">
+                    <section class="screen flex items-center py-5">
                         <div class="w-full">
                             <div class="text-xl italic font-semibold text-right text-gray-900">
                                 Run, you clever boy, and remember

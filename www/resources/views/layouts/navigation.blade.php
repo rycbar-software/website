@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="container w-full md:max-w-5xl mx-auto">
+    <div class="container">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -11,14 +11,13 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
+                <div class="flex space-x-8 sm:-my-px sm:ml-5">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('dashboard')" :class="'font-raleway'">
                         RYCBAR
                     </x-nav-link>
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <div class="flex h-full">
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
@@ -78,8 +77,17 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                RYCBAR
+            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                Products
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('partners.index')" :active="request()->routeIs('partners.index')">
+                Partners
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('articles.index')" :active="request()->routeIs('articles.index')">
+                Articles
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('contacts')" :active="request()->routeIs('contacts')">
+                Contacts
             </x-responsive-nav-link>
         </div>
 

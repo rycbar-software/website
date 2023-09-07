@@ -37,8 +37,8 @@
                     @include('layouts.navigation')
 
                     @if (isset($h1))
-                        <div class="container w-full md:max-w-5xl mx-auto pt-20">
-                            <h1 class="font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{ $h1 }}</h1>
+                        <div class="container">
+                            <h1 class="pt-20 font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{ $h1 }}</h1>
                         </div>
                     @endif
 
@@ -49,19 +49,23 @@
                     @endif
 
                     @if($errors->any())
-                        <div class="container w-full md:max-w-5xl mx-auto py-20">
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                        <div class="container">
+                            <div class="py-20">
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     @endif
 
-                    <main class="container w-full md:max-w-5xl mx-auto py-20">
-                        {{ $slot }}
+                    <main class="container">
+                        <div class="py-20">
+                            {{ $slot }}
+                        </div>
                     </main>
                 </div>
                 @include('components.footer')

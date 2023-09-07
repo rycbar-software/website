@@ -1,7 +1,7 @@
-<form class="w-full max-w-sm" action="/contacts/" onsubmit="handleFeedbackSubmit(this); return false;">
+<form class="w-full" action="/contacts/" onsubmit="handleFeedbackSubmit(this); return false;">
     @csrf
     <div class="">
-        <label class="block text-gray-500 font-bold mb-1" for="name">Organization name</label>
+        <label class="block text-gray-700 font-bold mb-1" for="name">Organization name</label>
         <input
             name="name"
             id="name"
@@ -12,7 +12,7 @@
         >
     </div>
     <div class="mt-6">
-        <label class="block text-gray-500 font-bold mb-1" for="email">Email</label>
+        <label class="block text-gray-700 font-bold mb-1" for="email">Email</label>
         <input
             name="email"
             id="email"
@@ -24,7 +24,7 @@
         >
     </div>
     <div class="mt-6">
-        <label for="message" class="block text-gray-500 font-bold mb-1">Message</label>
+        <label for="message" class="block text-gray-700 font-bold mb-1">Message</label>
         <textarea
             id="message"
             name="message"
