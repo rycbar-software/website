@@ -26,13 +26,13 @@ Webserver included:
 ### 1. Clone repository
 
 ~~~
-git clone git@github.com:a-kryvenko/laravel-10-webserver.git .
+git clone git@github.com:rycbar-software/website.git .
 ~~~
 
-### 2. Create copy of .env file:
+### 2. Create copy of .env file and copy of laravel .env file:
 
 ~~~
-cp .env.example .env
+cp .env.example .env && cp www/.env.example www/.env
 ~~~
 
 ### 3. Modify .env, set up variables
@@ -61,51 +61,31 @@ cp .env.example .env
 - <b>dc-dev.yml</b> - dev environment services. NPM, NodeJs, MailHog;
 - <b>dc-cloud.yml</b> - cloud backups storage.
 
-### 5. Create folder for website content
+### 5. Set up laravel variables
 
-~~~ 
-mkdir www
-cd www
-git clone you-repository .
-./nginx-proxy-up.sh
-docker-compose build \  
+### 6. Build application
+
+```shell
+docker-compose build
 docker-compose up -d
 docker-compose run --rm composer install --no-dev -o
 docker-compose run --rm artisan key:generate
+docker-compose run --rm artisan storage:link
 docker-compose run --rm artisan migrate
 docker-compose run --rm artisan admin:create
+```
 
-~~~
+### 7. [Optional] For ssl certificates up nginx-proxy
 
-### 6. Build images and up server
+```shell
+./nginx-proxy-up.sh
+```
 
-~~~
+### 8. Init crontab
 
-~~~
-
-### 7. Initialize crontab
-
-~~~ 
+```shell
 ./cgi-bin/prepare-crontab.sh
-~~~
-
-### 8. Install you website content
-
-If you clone existing repository - then use follow:
-
-~~~ 
-
-~~~
-
-~~~ 
-
-~~~
-
-In case, if you create new repository - use composer:
-
-~~~
-docker-compose run --rm composer create-project laravel/laravel www
-~~~
+```
 
 ### 9. Using artisan, composer and npm
 
