@@ -38,7 +38,7 @@
 
                     @if (isset($h1))
                         <div class="container">
-                            <h1 class="pt-20 font-bold font-sans break-normal text-gray-900 pt-6 pb-2 text-3xl md:text-4xl">{{ $h1 }}</h1>
+                            <h1 class="pt-20 font-bold font-sans break-normal text-gray-900 pb-2 text-3xl md:text-4xl">{{ $h1 }}</h1>
                         </div>
                     @endif
 

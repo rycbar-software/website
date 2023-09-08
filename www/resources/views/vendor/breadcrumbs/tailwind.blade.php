@@ -1,5 +1,5 @@
 @unless ($breadcrumbs->isEmpty())
-    <nav class="container w-full md:max-w-5xl mx-auto">
+    <nav class="container">
         <ol class="py-4 flex flex-wrap text-sm text-gray-800">
             @foreach ($breadcrumbs as $breadcrumb)
 
