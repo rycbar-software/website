@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Domain\Feedback\FeedbackCreateDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreFeedbackRequest extends FormRequest
@@ -12,6 +13,15 @@ class StoreFeedbackRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    public function getDTO(): FeedbackCreateDTO
+    {
+        return new FeedbackCreateDTO(
+            $this->get('name'),
+            $this->get('email'),
+            $this->get('message')
+        );
     }
 
     /**
