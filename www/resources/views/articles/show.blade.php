@@ -10,6 +10,6 @@
     @endcan
     <article>
         <p class="text-sm md:text-base font-normal text-gray-600">{{ $article->publishDate() }}</p>
-        <div>{!! $article->detail_text !!}</div>
+        <div class="content">{!! $article->detail_text !!}</div>
     </article>
 </x-app-layout>

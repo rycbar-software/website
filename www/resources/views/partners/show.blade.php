@@ -9,6 +9,6 @@
         </div>
     @endcan
     <article>
-        <div>{!! $partner->getDetailText() !!}</div>
+        <div class="content">{!! $partner->getDetailText() !!}</div>
     </article>
 </x-app-layout>
