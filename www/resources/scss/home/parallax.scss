@@ -1,0 +1,14 @@
+.parallax {
+    background-color: var(--color-void-dark);
+    &__content {
+        perspective: 1px;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .hero {
+        position: absolute;
+        top: 0;
+        transform: translateZ(-1px) scale(2);
+    }
+}

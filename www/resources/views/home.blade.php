@@ -2,8 +2,8 @@
     <x-slot:h1>RYCBAR software</x-slot:h1>
     <x-slot:seo>{!! seo($SEOData) !!}</x-slot:seo>
 
-    <div class="parallax-wrapper">
-        <div class="parallax">
+    <div class="parallax">
+        <div class="parallax__content">
             <section class="screen hero">
                 <div class="hero__content font-raleway">
                     <h1 class="hero__title"><span class="hero__name">RYCBAR</span><span class="hero__text">Web applications maintenance and development</span></h1>

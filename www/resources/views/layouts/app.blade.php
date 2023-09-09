@@ -20,7 +20,7 @@
         <meta name="theme-color" content="#ffffff">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/scss/app.scss', 'resources/js/app.js'])
         @if(\Illuminate\Support\Facades\Auth::user()?->isAdmin())
             <x-head.tinymce-config></x-head.tinymce-config>
             <x-head.prysmjs-config></x-head.prysmjs-config>
