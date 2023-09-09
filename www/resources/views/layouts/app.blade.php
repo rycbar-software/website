@@ -23,8 +23,9 @@
         @vite(['resources/scss/app.scss', 'resources/js/app.js'])
         @if(\Illuminate\Support\Facades\Auth::user()?->isAdmin())
             <x-head.tinymce-config></x-head.tinymce-config>
-            <x-head.prysmjs-config></x-head.prysmjs-config>
         @endif
+
+        <x-head.prysmjs-config></x-head.prysmjs-config>
 
         <link rel="preload" href="{{ asset('/assets/fonts/raleway/style.css') }}" as="style">
     </head>
