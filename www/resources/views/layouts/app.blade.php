@@ -26,8 +26,6 @@
         @endif
 
         <x-head.prysmjs-config></x-head.prysmjs-config>
-
-        <link rel="preload" href="{{ asset('/assets/fonts/raleway/style.css') }}" as="style">
     </head>
     <body class="bg-gray-100 font-sans antialiased leading-normal tracking-normal">
         @if (request()->route()->getName() == 'home')
