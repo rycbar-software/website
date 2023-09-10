@@ -21,7 +21,7 @@
                         <h2 class="text-2xl font-bold leading-8 tracking-tight">
                             <a class="text-gray-900" href="{{ route('articles.show', $article) }}">{{ $article->getName() }}</a>
                         </h2>
-                        <div class="prose max-w-none text-gray-500 content">
+                        <div class="content">
                             {!! $article->preview_text !!}
                         </div>
                     </div>

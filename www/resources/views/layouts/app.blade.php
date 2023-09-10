@@ -72,7 +72,5 @@
                 @include('components.footer')
             </div>
         @endif
-        <script src="{{ asset('/assets/fontobserver/fontobserver.js') }}"></script>
-        <link rel="stylesheet" href="{{ asset('/assets/fonts/raleway/style.css') }}">
     </body>
 </html>
