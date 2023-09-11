@@ -20,8 +20,8 @@
                             <h2 class="text-6xl font-raleway mb-10">Who we are</h2>
                             <div class="text-lg text-justify">
                                 <p class="mb-3">
-                                    Welcome to RYCBAR - your trusted partner for long-term software maintenance, refactoring, and development solutions. We have over 10 years of
-                                    experience in development and maintenance e-commerce projects of any complexity - from small landing pages to stores with millions of products.
+                                    Welcome to RYCBAR - your trusted partner for long-term software maintenance, refactoring, and development solutions. We are small team of experts, and have over 10 years of
+                                    experience in development and long-term maintenance e-commerce projects of any complexity - from small landing pages to stores with millions of products.
                                 </p>
                                 <p class="mb-3">
                                     At RYCBAR, we are more than just a software company – we are your dedicated collaborators in enhancing, optimizing, and evolving your digital solutions. With a passion for innovation and a commitment to excellence, we have established ourselves as a leading force in the realm of software services.
