@@ -33,9 +33,7 @@
     </div>
     <div class="js-feedback-response text-sm"></div>
     <div class="mt-6 md:flex md:items-start">
-        <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
-            Send
-        </button>
+        <button class="btn btn--blue" type="submit">Send</button>
     </div>
 </form>
 <script>

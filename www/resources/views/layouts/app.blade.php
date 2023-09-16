@@ -70,5 +70,28 @@
                 @include('components.footer')
             </div>
         @endif
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Main developer",
+                "additionalType": "Telegram",
+                "telephone": "@a_kryvenko"
+              },
+              "email": "krivenko.a.b@gmail.com",
+              "alumni": [
+                {
+                  "@type": "Person",
+                  "name": "Andriy Kryvenko"
+                }
+              ],
+              "name": "Rycbar Software",
+              "serviceType": "Web development and maintaining",
+              "description": "Development and long term maintenance of web applications",
+              "url": "https://{{ config('app.name') }}/"
+            }
+        </script>
     </body>
 </html>
