@@ -14,6 +14,7 @@
             { text: 'C', value: 'c' },
             { text: 'Bash', value: 'bash' },
             { text: 'Go', value: 'go' },
-        ]
+        ],
+        convert_urls: false
     });
 </script>
