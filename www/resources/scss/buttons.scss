@@ -1,0 +1,42 @@
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: .3s all;
+    &--blue {
+        color: #ffffff;
+        background-color: #3b82f6;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    &--red {
+        color: #ffffff;
+        background-color: #e74949;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    &--yellow {
+        color: #ffffff;
+        background-color: #ffac14;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+.link {
+    display: inline-block;
+    cursor: pointer;
+}
+.link--blue {
+    color: #3b82f6;
+    transition: .3s all;
+    &:hover {
+        color: #60a5fa;
+    }
+}

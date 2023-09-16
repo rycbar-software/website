@@ -1,17 +1,21 @@
 @unless ($breadcrumbs->isEmpty())
     <nav class="container">
-        <ol class="py-4 flex flex-wrap text-sm text-gray-800">
-            @foreach ($breadcrumbs as $breadcrumb)
+        <ol class="py-4 flex flex-wrap text-sm text-gray-800" itemscope itemtype="https://schema.org/BreadcrumbList">
+            @foreach ($breadcrumbs as $key => $breadcrumb)
 
                 @if ($breadcrumb->url && !$loop->last)
-                    <li>
-                        <a href="{{ $breadcrumb->url }}" class="text-blue-600 hover:text-blue-900 hover:underline focus:text-blue-900 focus:underline">
-                            {{ $breadcrumb->title }}
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a href="{{ $breadcrumb->url }}" itemprop="item" class="text-blue-600 hover:text-blue-900 hover:underline focus:text-blue-900 focus:underline">
+                            <span itemprop="name">{{ $breadcrumb->title }}</span>
+                            <meta itemprop="position" content="{{ $key + 1 }}" />
                         </a>
                     </li>
                 @else
-                    <li>
-                        {{ $breadcrumb->title }}
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span itemprop="item">
+                            <span itemprop="name">{{ $breadcrumb->title }}</span>
+                            <meta itemprop="position" content="{{ $key + 1 }}" />
+                        </span>
                     </li>
                 @endif
 

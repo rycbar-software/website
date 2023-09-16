@@ -4,6 +4,7 @@
 @import "tailwindcss/utilities.css";
 
 @import "colors";
+@import "buttons";
 @import "layout/layout";
 @import "layout/header";
 @import "layout/footer";
@@ -12,6 +13,9 @@
 @import "home/parallax";
 
 @import "content";
+
+@import "articles/list";
+@import "articles/detail";
 
 
 

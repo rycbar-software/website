@@ -5,28 +5,20 @@
     @can('create article')
         <x-forms.buttons.add href="{{ route('articles.create') }}"></x-forms.buttons.add>
     @endcan
-    <section class="divide-y divide-gray-200 dark:divide-gray-700">
+    <section itemscope itemtype="https://schema.org/ItemList">
         @foreach($articles as $article)
-            <article class="py-12 flex">
-                <div class="space-y-2 w-1/4">
-                    <dl>
-                        <dt>{{ $article->isPublished() ? 'Published' : 'Draft' }}</dt>
-                        <dd class="text-base font-medium leading-6 text-gray-500">
-                            <time datetime="2023-08-05T00:00:00.000Z">{{ $article->publishDate() }}</time>
-                        </dd>
-                    </dl>
+            <article class="article" itemprop="itemListElement" itemscope itemtype="https://schema.org/Article">
+                <div class="article__info">
+                    <p class="article__Status">{{ $article->isPublished() ? 'Published' : 'Draft' }}</p>
+                    <time datetime="{{ $article->created_at->toIso8601String() }}" class="article__date">{{ $article->publishDate() }}</time>
+                    <meta itemprop="datePublished" content="{{ $article->created_at->toIso8601String() }}">
+                    <p class="article__author"><span>By </span><a href="https://a-kryvenko.com/" itemprop="author">Andriy Kryvenko</a></p>
                 </div>
-                <div class="space-y-5 xl:col-span-3 w-3/4">
-                    <div class="space-y-6">
-                        <h2 class="text-2xl font-bold leading-8 tracking-tight">
-                            <a class="text-gray-900" href="{{ route('articles.show', $article) }}">{{ $article->getName() }}</a>
-                        </h2>
-                        <div class="content">
-                            {!! $article->preview_text !!}
-                        </div>
-                    </div>
-                    <div class="text-base font-medium leading-6">
-                        <a href="{{ route('articles.show', $article) }}" class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">Read more</a>
+                <div class="article__content">
+                    <a href="{{ route('articles.show', $article) }}"><h2 class="article__name" itemprop="name">{{ $article->getName() }}</h2></a>
+                    <div class="article__text" itemprop="articleBody">{!! $article->preview_text !!}</div>
+                    <div class="article__details">
+                        <a href="{{ route('articles.show', $article) }}" class="link link--blue">Read more</a>
                     </div>
                 </div>
             </article>

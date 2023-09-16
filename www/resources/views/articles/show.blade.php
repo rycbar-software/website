@@ -8,8 +8,10 @@
             <x-forms.buttons.delete action="{{ route('articles.destroy', [$article]) }}"></x-forms.buttons.delete>
         </div>
     @endcan
-    <article>
-        <p class="text-sm md:text-base font-normal text-gray-600">{{ $article->publishDate() }}</p>
-        <div class="content">{!! $article->detail_text !!}</div>
+    <article itemscope itemtype="https://schema.org/Article" class="article-details">
+        <meta itemprop="datePublished" content="{{ $article->created_at->toIso8601String() }}">
+        <p class="article-details__date">{{ $article->publishDate() }}</p>
+        <p class="article-details__author"><span>By </span><a href="https://a-kryvenko.com/" itemprop="author">Andriy Kryvenko</a></p>
+        <div itemprop="articleBody" class="article-details__text">{!! $article->detail_text !!}</div>
     </article>
 </x-app-layout>

@@ -1,0 +1,41 @@
+.article {
+    margin-bottom: 56px;
+    display: flex;
+    &:not(:first-child) {
+        padding-top: 56px;
+        border-top: 1px solid #d1d1d1;
+    }
+    &__info {
+        width: 25%;
+    }
+    &__content {
+        width: 75%;
+        padding: 0 0 0 12px;
+    }
+    &__name {
+        font-size: 24px;
+    }
+    &__text {
+        text-align: justify;
+        margin-top: 24px;
+    }
+    &__details {
+        margin-top: 24px;
+        font-weight: bold;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .article {
+        margin-bottom: 24px;
+        display: block;
+        &__info {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+        &__content {
+            width: 100%;
+            padding: 0;
+        }
+    }
+}
