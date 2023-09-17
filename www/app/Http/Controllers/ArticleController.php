@@ -17,7 +17,7 @@ class ArticleController extends Controller
         return view('articles.index', [
             'articles' => Article::orderByDesc('id')->paginate(12),
             'SEOData' => new SEOData(
-                title: 'Articles - RYCBAR software',
+                title: 'Articles of RYCBAR software',
                 description: 'List of articles, created by RYCBAR software team or Andriy Kryvenko'
             )
         ]);
