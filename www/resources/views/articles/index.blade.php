@@ -16,8 +16,8 @@
                 </div>
                 <div class="article__content">
                     <a href="{{ route('articles.show', $article) }}"><h2 class="article__name" itemprop="name">{{ $article->getName() }}</h2></a>
-                    <div class="article__text" itemprop="articleBody">{!! $article->preview_text !!}</div>
-                    <div class="article__details content">
+                    <div class="article__text content" itemprop="articleBody">{!! $article->preview_text !!}</div>
+                    <div class="article__details">
                         <a href="{{ route('articles.show', $article) }}" class="link link--blue">Read more</a>
                     </div>
                 </div>
