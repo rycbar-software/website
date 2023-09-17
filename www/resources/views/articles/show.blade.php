@@ -11,7 +11,7 @@
     <article itemscope itemtype="https://schema.org/Article" class="article-details">
         <meta itemprop="datePublished" content="{{ $article->created_at->toIso8601String() }}">
         <p class="article-details__date">{{ $article->publishDate() }}</p>
-        <p class="article-details__author"><span>By </span><a href="https://a-kryvenko.com/" itemprop="author">Andriy Kryvenko</a></p>
-        <div itemprop="articleBody" class="article-details__text">{!! $article->detail_text !!}</div>
+        <p class="article-details__author"><span>By </span><a class="link link--blue" href="https://a-kryvenko.com/" itemprop="author">Andriy Kryvenko</a></p>
+        <div itemprop="articleBody" class="article-details__text content">{!! $article->detail_text !!}</div>
     </article>
 </x-app-layout>

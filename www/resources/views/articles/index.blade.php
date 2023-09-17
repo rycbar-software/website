@@ -12,12 +12,12 @@
                     <p class="article__Status">{{ $article->isPublished() ? 'Published' : 'Draft' }}</p>
                     <time datetime="{{ $article->created_at->toIso8601String() }}" class="article__date">{{ $article->publishDate() }}</time>
                     <meta itemprop="datePublished" content="{{ $article->created_at->toIso8601String() }}">
-                    <p class="article__author"><span>By </span><a href="https://a-kryvenko.com/" itemprop="author">Andriy Kryvenko</a></p>
+                    <p class="article__author"><span>By </span><a class="link link--blue" href="https://a-kryvenko.com/" itemprop="author">Andriy Kryvenko</a></p>
                 </div>
                 <div class="article__content">
                     <a href="{{ route('articles.show', $article) }}"><h2 class="article__name" itemprop="name">{{ $article->getName() }}</h2></a>
                     <div class="article__text" itemprop="articleBody">{!! $article->preview_text !!}</div>
-                    <div class="article__details">
+                    <div class="article__details content">
                         <a href="{{ route('articles.show', $article) }}" class="link link--blue">Read more</a>
                     </div>
                 </div>

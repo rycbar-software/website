@@ -4,4 +4,13 @@
     p {
         margin-bottom: 12px;
     }
+    a {
+        display: inline-block;
+        cursor: pointer;
+        color: #3b82f6;
+        transition: .3s all;
+        &:hover {
+            color: #60a5fa;
+        }
+    }
 }

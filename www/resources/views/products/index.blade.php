@@ -17,7 +17,7 @@
                     @if($product->external_link)
                         <p class="py-3"><a href="{{ $product->external_link }}">{{ $product->external_link }}</a></p>
                     @endif
-                    <div class="content text-justify mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-48 overflow-hidden">{!! $product->getPreviewText() !!}</div>
+                    <div class="content text-justify mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-48 overflow-hidden content">{!! $product->getPreviewText() !!}</div>
                 </div>
             </article>
         @endforeach
