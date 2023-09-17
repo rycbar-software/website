@@ -1,5 +1,6 @@
 .content {
-    font-size: 20px;
+    font-size: 16px;
+    line-height: 1.8;
     color: var(--color-text-dark);
     p {
         margin-bottom: 12px;
@@ -12,5 +13,10 @@
         &:hover {
             color: #60a5fa;
         }
+    }
+    ol {
+        list-style: decimal;
+        margin-left: 12px;
+        padding-left: 12px;
     }
 }
