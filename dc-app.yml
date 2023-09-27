@@ -103,7 +103,7 @@ services:
     profiles: ["composer"]
     build:
       context: ./.docker
-      dockerfile: composer.Dockerfile
+      dockerfile: php.Dockerfile
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
@@ -114,10 +114,7 @@ services:
       - ./www:/var/webserver/www
       - ./log:/var/webserver/log
     working_dir: /var/webserver/www
-    depends_on:
-      - php
-    user: ${USER:-laravel} #system user
-    entrypoint: [ 'composer', '--ignore-platform-reqs' ]
+    entrypoint: [ 'composer']
     networks:
       - backend
 

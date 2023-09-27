@@ -53,6 +53,9 @@ COPY --chown=www:www .msmtprc /etc/msmtprc
 
 USER www
 
+# Compsoer installation
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
 # When runned - set msmtp configuration and up php-fpm
 CMD cp /etc/msmtprc.default /tmp/msmtprc \
     && sed -i "s/#EMAIL#/$SMTP_EMAIL/" /tmp/msmtprc \
