@@ -28,7 +28,7 @@
         <x-head.prysmjs-config></x-head.prysmjs-config>
     </head>
     <body class="bg-gray-100 font-sans antialiased leading-normal tracking-normal">
-        @if(!auth()?->user()?->isAdmin() && env('app.environment') == 'production')
+        @if(!auth()?->user()?->isAdmin() && config('app.env') == 'production')
             <!-- Google tag (gtag.js) -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SRFFDEX7"></script>
             <script>
