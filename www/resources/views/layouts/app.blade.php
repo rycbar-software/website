@@ -28,6 +28,18 @@
         <x-head.prysmjs-config></x-head.prysmjs-config>
     </head>
     <body class="bg-gray-100 font-sans antialiased leading-normal tracking-normal">
+        @if(!auth()?->user()?->isAdmin() && env('app.environment') == 'production')
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6SRFFDEX7"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'G-S6SRFFDEX7');
+            </script>
+
+        @endif
         @if (request()->route()->getName() == 'home')
             {{ $slot }}
         @else
