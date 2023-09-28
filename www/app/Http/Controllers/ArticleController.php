@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use Illuminate\Support\Collection;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Spatie\Tags\Tag;
 
 class ArticleController extends Controller
 {
@@ -18,7 +20,23 @@ class ArticleController extends Controller
             'articles' => Article::orderByDesc('id')->paginate(12),
             'SEOData' => new SEOData(
                 title: 'Articles of RYCBAR software',
-                description: 'List of articles, created by RYCBAR software team or Andriy Kryvenko'
+                description: 'List of articles and tutorials, created by RYCBAR software team or Andriy Kryvenko'
+            )
+        ]);
+    }
+
+    public function tags(Collection $tags)
+    {
+        $tagNames = $tags->map(function($tag) {
+            return $tag->name;
+        })->toArray();
+
+        return view('articles.index', [
+            'articles' => Article::orderByDesc('id')->withAllTags($tagNames)->paginate(12),
+            'tags' => $tags,
+            'SEOData' => new SEOData(
+                title: implode(', ', $tagNames) . ' articles of RYCBAR software',
+                description: 'List of articles and tutorials about '.implode(', ', $tagNames).', created by RYCBAR software team or Andriy Kryvenko'
             )
         ]);
     }
@@ -36,7 +54,13 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        $article = Article::create($request->validated());
+        $tags = $request->get('tags') ?: [];
+        $newTags = explode(', ', $request->get('new_tags') ?: '');
+
+        $fields = $request->validated();
+        $fields['tags'] = array_merge($tags, $newTags);
+
+        $article = Article::create($fields);
         return redirect()->route('articles.show', [$article]);
     }
 
@@ -65,7 +89,16 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        $article->update($request->validated());
+        $tags = $request->get('tags') ?: [];
+        $newTags = array_filter(explode(', ', $request->get('new_tags') ?: ''));
+
+        $fields = $request->validated();
+        $fields['tags'] = array_values($tags);
+        if (!empty($newTags)) {
+            $fields['tags'] = array_merge($tags, $newTags);
+        }
+
+        $article->update($fields);
         return redirect()->route('articles.show', [$article]);
     }
 

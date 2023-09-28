@@ -50,3 +50,10 @@ foreach ($dataRoutes as $routeGroup) {
     });
 }
 
+// Articles tags
+Breadcrumbs::for('articles.tags', function (BreadcrumbTrail $trail, $tags) {
+    $trail->parent('articles.index');
+    $trail->push(implode(', ', $tags->map(function($tag) {
+        return $tag->name;
+    })->toArray()), '');
+});

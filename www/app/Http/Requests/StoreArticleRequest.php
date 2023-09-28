@@ -26,7 +26,9 @@ class StoreArticleRequest extends FormRequest
             'name' => 'required|unique:articles|max:255',
             'slug' => 'required|unique:articles|max:255',
             'preview_text' => '',
-            'detail_text' => ''
+            'detail_text' => '',
+            'new_tags' => 'string',
+            'tags' => 'array|string'
         ];
     }
 }

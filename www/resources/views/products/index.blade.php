@@ -1,6 +1,5 @@
 <x-app-layout>
     <x-slot:h1>Products</x-slot:h1>
-    <x-slot:breadcrumbs>{{ Breadcrumbs::render(request()->route()->getName()) }}</x-slot:breadcrumbs>
     <x-slot:seo>{!! seo($SEOData) !!}</x-slot:seo>
     @can('create product')
         <x-forms.buttons.add href="{{ route('products.create') }}"></x-forms.buttons.add>

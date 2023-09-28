@@ -113,6 +113,7 @@ services:
     volumes:
       - ./www:/var/webserver/www
       - ./log:/var/webserver/log
+      - ./.docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     working_dir: /var/webserver/www
     entrypoint: [ 'composer']
     networks:

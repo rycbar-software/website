@@ -1,0 +1,29 @@
+.tag-filter {
+    margin-left: 12px;
+    &__title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+    &__tag {
+        opacity: 0.8;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+.tag-list {
+    margin-top: 12px;
+}
+.tag {
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 2px 6px;
+    margin: 0 4px 2px 0;
+    color: var(--color-void-light);
+    &--checked {
+        background-color: var(--color-void-light);
+        color: #ffffff;
+    }
+}

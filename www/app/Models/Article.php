@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
+use Spatie\Tags\HasTags;
 
 class Article extends DataModel
 {
-    use HasFactory, HasSEO;
+    use HasFactory, HasSEO, HasTags;
 
     public function getDynamicSEOData(): SEOData
     {
