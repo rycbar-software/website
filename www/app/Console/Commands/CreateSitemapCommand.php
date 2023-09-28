@@ -12,6 +12,7 @@ use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\SitemapIndex;
 use Spatie\Sitemap\Tags\Url;
+use Spatie\Tags\Tag;
 
 class CreateSitemapCommand extends Command
 {
@@ -37,6 +38,7 @@ class CreateSitemapCommand extends Command
         SitemapIndex::create()
             ->add($this->generateStaticSitemap())
             ->add($this->generateEntitySitemap('articles', Article::all()))
+            ->add($this->generateTagsSitemap())
             ->add($this->generateEntitySitemap('partners', Partner::all()))
             ->add($this->generateEntitySitemap('products', Product::all()))
             ->writeToFile(public_path('/sitemap.xml'));
@@ -74,6 +76,22 @@ class CreateSitemapCommand extends Command
         foreach ($entities as $entity) {
             $sitemap->add(
                 Url::create(route($entityName . '.show', [$entity]))->setLastModificationDate($entity->updated_at)
+            );
+        }
+        $sitemap->writeToFile(public_path($path));
+
+        return $path;
+    }
+
+    private function generateTagsSitemap(): string
+    {
+        $path = '/sitemap_articles_tags.xml';
+
+        $sitemap = Sitemap::create();
+
+        foreach (Tag::all() as $tag) {
+            $sitemap->add(
+                Url::create(route('articles.tags', [$tag->slug]))->setLastModificationDate($tag->updated_at)
             );
         }
         $sitemap->writeToFile(public_path($path));
