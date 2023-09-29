@@ -47,21 +47,24 @@
                 <div>
                     @include('layouts.navigation')
 
-                    @if (isset($h1))
-                        <div class="container">
-                            <h1 class="pt-20 font-bold font-sans break-normal text-gray-900 pb-2 text-3xl md:text-4xl">{{ $h1 }}</h1>
+                    <div class="container">
+                        <div class="heading">
+                            @if (isset($h1))
+                                <h1 class="heading__title">{{ $h1 }}</h1>
+                            @endif
+                            <div class="heading__breadcrumbs">
+                                @if(isset($breadcrumbs))
+                                    {{ $breadcrumbs }}
+                                @else
+                                    {{ Breadcrumbs::render(request()->route()->getName()) }}
+                                @endif
+                            </div>
                         </div>
-                    @endif
-
-                    @if(isset($breadcrumbs))
-                        {{ $breadcrumbs }}
-                    @else
-                        {{ Breadcrumbs::render(request()->route()->getName()) }}
-                    @endif
+                    </div>
 
                     @if($errors->any())
                         <div class="container">
-                            <div class="py-20">
+                            <div class="pb-20">
                                 <div class="alert alert-danger">
                                     <ul>
                                         @foreach ($errors->all() as $error)
@@ -74,7 +77,7 @@
                     @endif
 
                     <main class="container">
-                        <div class="py-20">
+                        <div class="pb-20">
                             {{ $slot }}
                         </div>
                     </main>
@@ -100,7 +103,7 @@
                 }
               ],
               "name": "Rycbar Software",
-              "serviceType": "Web development and maintaining",
+              "serviceType": "Web development and maintaining services",
               "description": "Development and long term maintenance of web applications",
               "url": "https://{{ config('app.name') }}/",
               "image": "https://{{ config('app.name') }}/favicon-32x32.ico"
