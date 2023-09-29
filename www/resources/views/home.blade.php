@@ -57,11 +57,18 @@
                     <section class="screen flex items-center border-b-2 py-5">
                         <div class="w-full">
                             <h2 class="text-6xl font-raleway mb-10">Our partners</h2>
-                            <div class="flex flex-wrap justify-center py-10">
+                            <div class="py-10">
                                 @foreach($partners as $partner)
-                                    <a href="{{ route('partners.show', [$partner]) }}" class="m-5 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
-                                        <h5 class="text-2xl font-bold tracking-tight text-gray-900">{{ $partner->getName() }}</h5>
-                                    </a>
+                                    <div
+                                        class="mb-3 overflow-hidden flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row w-full">
+                                        @if($loop->odd)
+                                            <x-partners.index.picture :partner="$partner"></x-partners.index.picture>
+                                        @endif
+                                        <x-partners.index.description :partner="$partner"></x-partners.index.description>
+                                        @if($loop->even)
+                                            <x-partners.index.picture :partner="$partner"></x-partners.index.picture>
+                                        @endif
+                                    </div>
                                 @endforeach
                             </div>
                         </div>

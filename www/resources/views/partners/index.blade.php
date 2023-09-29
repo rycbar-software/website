@@ -4,19 +4,18 @@
     @can('create partner')
         <x-forms.buttons.add href="{{ route('partners.create') }}"></x-forms.buttons.add>
     @endcan
-    <section class="divide-y divide-gray-200 dark:divide-gray-700">
+    <section>
         @foreach($partners as $partner)
-            <article class="py-12 flex">
-{{--                <img src="{{ $partner->getPreviewPicture() }}" alt="">--}}
-                <div class="space-y-6">
-                    <h2 class="text-2xl font-bold leading-8 tracking-tight">
-                        <a class="text-gray-900" href="{{ route('partners.show', $partner) }}">{{ $partner->getName() }}</a>
-                    </h2>
-                    <div class="content prose max-w-none text-gray-500">
-                        {!! $partner->getPreviewText() !!}
-                    </div>
-                </div>
-            </article>
+            <div
+                class="mb-3 overflow-hidden flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row w-full">
+                @if($loop->odd)
+                    <x-partners.index.picture :partner="$partner"></x-partners.index.picture>
+                @endif
+                <x-partners.index.description :partner="$partner"></x-partners.index.description>
+                @if($loop->even)
+                    <x-partners.index.picture :partner="$partner"></x-partners.index.picture>
+                @endif
+            </div>
         @endforeach
     </section>
 </x-app-layout>

@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePartnerRequest;
-use App\Http\Requests\UpdatePartnerRequest;
+use App\Domain\Partner\Service\PartnerService;
+use App\Http\Requests\Partner\StorePartnerRequest;
+use App\Http\Requests\Partner\UpdatePartnerRequest;
 use App\Models\Partner;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 
 class PartnerController extends Controller
 {
+    private PartnerService $partnerService;
+
+    public function __construct()
+    {
+        $this->partnerService = new PartnerService();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -36,7 +44,7 @@ class PartnerController extends Controller
      */
     public function store(StorePartnerRequest $request)
     {
-        $partner = Partner::create($request->validated());
+        $partner = $this->partnerService->create($request->getDTO());
         return redirect()->route('partners.show', [$partner]);
     }
 
@@ -65,7 +73,7 @@ class PartnerController extends Controller
      */
     public function update(UpdatePartnerRequest $request, Partner $partner)
     {
-        $partner->update($request->validated());
+        $this->partnerService->update($partner, $request->getDTO());
         return redirect()->route('partners.show', [$partner]);
     }
 
